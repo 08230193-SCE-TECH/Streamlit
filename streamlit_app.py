@@ -84,6 +84,12 @@ def card(title, body, icon="auto_awesome"):
 
 if page == "Home":
     st.markdown("""
+    <div style="background:#edf4ef;border:1px solid #d8e7dc;border-radius:14px;padding:1rem 1.2rem;margin-bottom:1.3rem;">
+      <div style="color:#2f5a49;font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:.72rem;">Group Details</div>
+      <div style="margin-top:.6rem;color:#214c3e;font-size:1.02rem;line-height:1.8;"><strong>Group No. 3</strong><br>Members: Sonam Choden, Jigme Tenzin, Kuenga Wangmo, Sangay Namling Yoezer, Tshering Gyelpo</div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.markdown("""
     <div class="hero">
       <div class="eyebrow">PROJECT SHOWCASE · STUDENT COMMUNITY</div>
       <h1>StudentSkill Hub</h1>
@@ -108,7 +114,6 @@ if page == "Home":
     m2.metric("Main language", "Python")
     m3.metric("GUI framework", "Tkinter")
     m4.metric("Main user roles", "2")
-    st.markdown('<div class="note"><b>Important:</b> StudentSkill Hub itself is a Python Tkinter desktop prototype. This Streamlit website is a separate information site created to explain the project and its idea.</div>', unsafe_allow_html=True)
 
 elif page == "Problem & Proposed Idea":
     header("01 · BACKGROUND", "Problem Identification", "Why might a student skill-sharing platform be useful in a university community?")
@@ -128,7 +133,6 @@ elif page == "Problem & Proposed Idea":
     with y: card("CONNECT", "Search for peers with relevant skills.", "link")
     with z: card("COLLABORATE", "Send and manage peer requests.", "handshake")
     with w: card("BUILD TRUST", "Share ratings and feedback.", "star")
-    st.success("The goal is to make student-to-student knowledge sharing easier and more visible.")
 
 elif page == "Project Objectives":
     header("02 · PURPOSE", "Project Objectives", "What the StudentSkill Hub application aims to provide.")
@@ -153,7 +157,6 @@ elif page == "Target Users & Roles":
         st.markdown("### :material/admin_panel_settings: Administrator")
         for item in ["Access the administrator panel", "View the student directory", "Inspect and manage accounts", "Review reported content", "View campus activity analytics"]:
             st.markdown(f"- {item}")
-    st.markdown('<div class="note">Role-based navigation means students and administrators see the screens and functions relevant to their responsibilities.</div>', unsafe_allow_html=True)
 
 elif page == "Application Modules":
     header("04 · FEATURES", "Main Application Features", "The student and administrator areas are organised into the following modules.")
@@ -183,8 +186,6 @@ elif page == "Application Modules":
         c1,c2 = st.columns(2)
         for col, item in zip((c1,c2), filtered_modules[start:start+2]):
             with col: card(item[0],item[1],item[2])
-    if not filtered_modules:
-        st.info("No modules match those filters. Try another category or search term.")
 
 elif page == "Student Workflow":
     header("05 · USER JOURNEY", "How a Student Uses the System", "A typical flow from signing in to providing feedback.")
@@ -211,7 +212,6 @@ elif page == "System Architecture":
     for i,(name,detail,extra) in enumerate(layers):
         st.markdown(f'<div class="step" style="text-align:center;border-left:0;border-top:4px solid #4b8b70"><b>{name}</b><br>{detail}<br><span style="color:#75847b;font-size:.88rem">{extra}</span></div>', unsafe_allow_html=True)
         if i != len(layers)-1: st.markdown("<div style='text-align:center;color:#4b8b70;font-size:1.2rem'>↓</div>", unsafe_allow_html=True)
-    st.info("The project is divided into modules to keep screens, data operations and utilities organised.")
 
 elif page == "Data Organisation":
     header("07 · DATA DESIGN", "Main Data Entities", "The project presentation identifies these logical data entities.")
@@ -229,7 +229,6 @@ elif page == "Data Organisation":
         with c1: card(entities[i][0],entities[i][1],"database")
         if i+1 < len(entities):
             with c2: card(entities[i+1][0],entities[i+1][1],"database")
-    st.markdown('<div class="warn"><b>Data-storage note:</b> These are logical tables described in the project materials. The current prototype stores data in memory using pandas DataFrames; the data is not yet persisted in a database.</div>', unsafe_allow_html=True)
 
 elif page == "Technology Stack":
     header("08 · DEVELOPMENT STACK", "Technologies and Tools", "Tools identified in the group's project presentation and requirements.")
@@ -272,7 +271,6 @@ elif page == "Live Demonstration Plan":
     ]
     for i,(name,desc) in enumerate(demos,1):
         st.markdown(f'<div class="step"><b>{i}. {name}</b><br>{desc}</div>', unsafe_allow_html=True)
-    st.warning("Use screenshots captured from your own running application during the presentation if available. This information website does not replace the live desktop-app demonstration.")
 
 elif page == "Limitations & Future Improvements":
     header("11 · CURRENT STATUS", "Limitations and Future Improvements", "The project presentation distinguishes the current prototype from planned next steps.")
@@ -285,11 +283,16 @@ elif page == "Limitations & Future Improvements":
         st.markdown("### Future improvements")
         for item in ["Connect a persistent database such as SQLite.","Add secure password hashing and stronger account security.","Support real multi-user access and deployment.","Improve testing, accessibility and user documentation."]:
             st.markdown(f"- {item}")
-    st.markdown('<div class="note">The future improvements are proposed next steps; they should not be presented as features already completed in the current prototype.</div>', unsafe_allow_html=True)
 
 elif page == "Conclusion & Sources":
     header("12 · WRAP-UP", "Making Student Skills Easier to Discover and Share", "StudentSkill Hub brings student profiles, skill discovery, peer requests and feedback into one desktop application.")
-    st.markdown('<div class="hero"><div class="eyebrow">CONCLUSION</div><h1>Skills · Share · Grow</h1><p>StudentSkill Hub provides a foundation for a more connected and collaborative campus community.</p><div style="font-weight:700;margin-top:1rem">THANK YOU · QUESTIONS AND DISCUSSION</div></div>', unsafe_allow_html=True)
+    st.markdown('<div class="hero"><div class="eyebrow">CONCLUSION</div><h1>Skills · Share · Grow</h1><p>StudentSkill Hub provides a foundation for a more connected and collaborative campus community. The project brings visibility to student talent, creates stronger peer-to-peer learning opportunities and supports a more helpful and organised campus environment.</p><div style="font-weight:700;margin-top:1rem">THANK YOU · QUESTIONS AND DISCUSSION</div></div>', unsafe_allow_html=True)
+    st.write("The main idea behind StudentSkill Hub is simple: students should not have to guess who knows what, who can help them, or where to find meaningful collaboration opportunities. By giving each student a profile, a visible skill set, and a way to request support, the system makes talent within the university easier to discover and use.")
+    st.write("This concept is especially valuable in a student environment where learning often happens informally, through peers, projects and shared experiences. A structured digital platform can help bridge that gap by making abilities visible, requests manageable, and feedback more constructive. In this way, the project encourages knowledge sharing, stronger communication, and a culture of mutual support rather than isolated academic work.")
+    col1, col2, col3 = st.columns(3)
+    with col1: card("Visibility", "Students can present their skills, achievements and interests in a clear and organised way.", "visibility")
+    with col2: card("Collaboration", "Peer requests and feedback make it easier to support one another academically and creatively.", "handshake")
+    with col3: card("Growth", "The application promotes learning, mentoring and continuous improvement among students.", "trending_up")
     st.markdown("### Project references and resources")
     st.markdown("- StudentSkill Hub project source code and README.md (group project materials).\n- Project requirements.txt: pandas, numpy and matplotlib.\n- [Python documentation](https://docs.python.org/3/)\n- [Tkinter documentation](https://docs.python.org/3/library/tkinter.html)\n- [Pandas documentation](https://pandas.pydata.org/docs/)\n- [NumPy documentation](https://numpy.org/doc/)\n- [Matplotlib documentation](https://matplotlib.org/stable/)")
 
